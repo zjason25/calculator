@@ -7,28 +7,47 @@ body {
 
 .calculator {
   background: rgb(0, 162, 255);
-  width: 220px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  height: 480px;
+  width: 380px;
+  border: 10px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.display {
+  box-sizing: border-box;
+  width: 365px;
+  display: flex;
+  font-size: 50px;
+  margin-bottom: 10px;
+  background: rgb(255, 255, 255);
+  justify-content: flex-end;
+  padding-right: 5px;
+
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
-.display {
-  width: 100%;
-  font-size: 50px;
-  margin-bottom: 10px;
-  display: flex;
-  background: rgb(255, 255, 255);
-  justify-content: flex-end;
-  align-items: flex-end;
+.buttons {
+  gap: 2px;
+}
+
+.zero {
+  height: 80px;
+  width: 180px;
 }
 
 button {
-  height: 40px;
-  width: 50px;
+  font-size: 20px;
+  height: 80px;
+  width: 90px;
   cursor: pointer;
 }
