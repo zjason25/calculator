@@ -42,6 +42,10 @@ function updateNums(btnClass, btnValue) {
     }
   }
   else if (btnClass == "operator") {
+    if (op != "") {
+      num1 = operate(num1, num2, op);
+      num2 = 0;
+    }
     op = btnValue;
   }
   else if (btnClass == "equal") {
