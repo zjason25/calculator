@@ -40,7 +40,7 @@ body {
   gap: 2px;
 }
 
-.zero {
+#zero {
   height: 80px;
   width: 180px;
 }
