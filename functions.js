@@ -20,7 +20,13 @@ function updateDisplay(btnClass) {
       display.textContent = num2;
     }
   }
+  else if (btnClass == "operator") {
+    if (op != "") {
+      display.textContent = num1;
+    }
+  }
 }
+
 function updateNums(btnClass, btnValue) {
   if (btnClass == "clear") {
     num1 = 0, num2 = 0, op = "";
@@ -67,6 +73,9 @@ function operate(num1, num2, op) {
     return num1 * num2;
   }
   else if (op == "/") {
+    if (num2 == 0) {
+      return "lol can't do that";
+    }
     return num1 / num2;
   }
 }
