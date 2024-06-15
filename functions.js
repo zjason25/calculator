@@ -1,6 +1,6 @@
 const display = document.querySelector(".display");
 const buttons = document.querySelectorAll("button");
-let num1 = 0, num2 = 0, op = "";
+let num1 = 0, num2 = null, op = "";
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -12,7 +12,8 @@ buttons.forEach((button) => {
 });
 
 function updateDisplay(btnClass) {
-  if (btnClass == "number" || btnClass == "clear" || btnClass == "equal") {
+  if (btnClass == "number" || btnClass == "clear" || btnClass == "equal"
+    || btnClass == "unary") {
     if (op == "") {
       display.textContent = num1;
     }
@@ -29,18 +30,18 @@ function updateDisplay(btnClass) {
 
 function updateNums(btnClass, btnValue) {
   if (btnClass == "clear") {
-    num1 = 0, num2 = 0, op = "";
+    num1 = 0, num2 = null, op = "";
   }
   else if (btnClass == "number") {
     if (op == "") {
-      if (num1 == 0) {
+      if (num1 === 0) {
         num1 = btnValue;
       } else {
         num1 += btnValue
       }
     }
     else {
-      if (num2 == 0) {
+      if (num2 == null) {
         num2 = btnValue;
       } else {
         num2 += btnValue
@@ -50,14 +51,42 @@ function updateNums(btnClass, btnValue) {
   else if (btnClass == "operator") {
     if (op != "") {
       num1 = operate(num1, num2, op);
-      num2 = 0;
+      num2 = null;
     }
     op = btnValue;
   }
   else if (btnClass == "equal") {
-    num1 = operate(num1, num2, op);
-    op = "";
-    num2 = 0;
+    if (op != "") {
+      num1 = operate(num1, num2, op);
+      op = "";
+      num2 = null;
+    }
+  }
+  else if (btnClass == "unary") {
+    if (btnValue == "+/-") {
+      if (num2 == null) {
+        num1 = -num1;
+      }
+      else {
+        num2 = -num2;
+      }
+    }
+    else if (btnValue == ".") {
+      if (num2 == null) {
+        num1 += ".";
+      }
+      else {
+        num2 += ".";
+      }
+    }
+    else if (btnValue == "%") {
+      if (num2 == null) {
+        num1 /= 100;
+      }
+      else {
+        num2 /= 100;
+      }
+    }
   }
   console.log(num1 + " " + op + " " + num2);
 }
